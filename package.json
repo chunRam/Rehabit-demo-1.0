@@ -1,0 +1,21 @@
+{
+  "name": "rehabit-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "lint": "eslint \"apps/**/*.{js,jsx}\"",
+    "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,json,md,yml,yaml}\"",
+    "build:mobile": "npm run build --workspace @rehabit/mobile",
+    "test:api": "npm test --workspace @rehabit/api",
+    "test:ml": "npm test --workspace @rehabit/ml"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5"
+  }
+}
