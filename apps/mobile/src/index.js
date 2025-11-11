@@ -2,6 +2,5 @@ export function bootstrapMobileApp() {
   console.log('Rehabit mobile app bootstrap sequence initiated.');
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  bootstrapMobileApp();
-}
+// 조건문 없이 앱 시작 함수를 바로 호출합니다.
+bootstrapMobileApp();
