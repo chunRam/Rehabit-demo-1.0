@@ -1,0 +1,84 @@
+{
+  "name": "Rehabit KPI Overview",
+  "description": "Executive dashboard tracking activation, retention, and revenue metrics.",
+  "collection_position": null,
+  "parameters": [
+    {
+      "name": "Date Range",
+      "slug": "date_range",
+      "type": "date/all"
+    },
+    {
+      "name": "Platform",
+      "slug": "platform",
+      "type": "string/="
+    }
+  ],
+  "ordered_cards": [
+    {
+      "visualization_settings": {
+        "card.title": "Weekly Active Users",
+        "card.description": "Count of distinct active users by week split by platform."
+      },
+      "sizeX": 4,
+      "sizeY": 3,
+      "col": 0,
+      "row": 0,
+      "dataset_query": {
+        "type": "query",
+        "query": {
+          "source-table": "analytics.daily_engagement",
+          "aggregation": [["count", "user_id"]],
+          "breakout": [["field", "week_start", {"temporal-unit": "week"}], ["field", "platform", null]],
+          "filter": ["and",
+            ["time-interval", ["field", "week_start", null], "past12weeks"],
+            ["=", ["field", "platform", null], ["parameter", "platform"]]
+          ]
+        }
+      }
+    },
+    {
+      "visualization_settings": {
+        "card.title": "Activation Funnel",
+        "card.description": "Signup to first habit completion conversion for the selected range."
+      },
+      "sizeX": 4,
+      "sizeY": 3,
+      "col": 4,
+      "row": 0,
+      "dataset_query": {
+        "type": "native",
+        "native": {
+          "query": "SELECT stage, conversions, conversion_rate FROM analytics.activation_funnel WHERE event_date BETWEEN {{date_range.start}} AND {{date_range.end}}",
+          "template-tags": {
+            "date_range": {
+              "name": "Date Range",
+              "display-name": "Date Range",
+              "type": "dimension",
+              "dimension": ["field", "event_date", null]
+            }
+          }
+        }
+      }
+    },
+    {
+      "visualization_settings": {
+        "card.title": "Revenue by Plan",
+        "card.description": "Monthly recurring revenue segmented by subscription plan."
+      },
+      "sizeX": 4,
+      "sizeY": 3,
+      "col": 8,
+      "row": 0,
+      "dataset_query": {
+        "type": "query",
+        "query": {
+          "source-table": "finance.mrr",
+          "aggregation": [["sum", "amount_usd"]],
+          "breakout": [["field", "billing_month", {"temporal-unit": "month"}], ["field", "plan", null]],
+          "filter": ["time-interval", ["field", "billing_month", null], "past12months"]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+version: 1
+sources:
+  - name: product
+    type: bigquery
+    description: Raw product analytics collected from the Rehabit applications.
+    dataset: rehabit_product
+    connection:
+      project_id: rehabit-analytics
+      default_location: us
+  - name: finance
+    type: snowflake
+    description: Finance warehouse containing subscription and revenue events.
+    connection:
+      account: rehabit
+      warehouse: analytics
+      role: BI_READER
+  - name: engagement
+    type: postgres
+    description: Aggregated engagement metrics replicated from production databases.
+    connection:
+      host: analytics.internal.rehabit
+      database: rehabit_dw
+      schema: analytics
