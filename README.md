@@ -31,7 +31,13 @@ Backend API built with [NestJS](https://nestjs.com/) that demonstrates a habit t
 3. Run database migrations
 
    ```bash
-   npm run migration:run
+   npm run build:mobile
+   npm run test:integration
+   npm run test:api
+   npm run test:ml
+   npm run test:mobile
+   npm run lint
+   npm run format
    ```
 
 4. Start the development server
@@ -65,27 +71,12 @@ src/
 ├── common/                    # Shared guards and decorators
 └── database/migrations/       # TypeORM migrations
 ```
-
-## API overview
-
-- `POST /auth/register` – create a new account
-- `POST /auth/login` – obtain a JWT access token
-- `GET /users/me` – retrieve the authenticated user profile
-- `POST /habits` – create a habit for the authenticated user
-- `GET /habits` – list habits for the authenticated user
-- `GET /habits/:id` – retrieve a specific habit
-- `PATCH /habits/:id` – update a habit
-- `DELETE /habits/:id` – delete a habit
-- `POST /habits/:id/analyze` – submit free text for emotion analysis (delegated to FastAPI service)
-
-All habit and profile endpoints require a Bearer token obtained via the auth endpoints.
-
-## Testing
-
-Run unit tests with:
-
-```bash
-npm test
+apps/
+  mobile/  # React Native placeholder project
+  api/     # Minimal Node.js API service
+  ml/      # Machine learning utilities
+docs/      # QA 체크리스트, 테스트 데이터 시드 등 가이드 문서
+.github/workflows/  # CI pipelines for each project
 ```
 
 ## Emotion analysis integration

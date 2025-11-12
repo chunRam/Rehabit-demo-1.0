@@ -1,0 +1,36 @@
+name: Integration Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/api/**'
+      - 'tests/integration/**'
+      - '.github/workflows/integration-tests.yml'
+      - 'package.json'
+  pull_request:
+    paths:
+      - 'apps/api/**'
+      - 'tests/integration/**'
+      - '.github/workflows/integration-tests.yml'
+      - 'package.json'
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run NestJS ↔ FastAPI integration tests
+        env:
+          ML_SERVICE_URL: http://127.0.0.1:5005
+        run: npm run test:integration
