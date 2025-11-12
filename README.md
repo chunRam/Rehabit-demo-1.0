@@ -12,8 +12,10 @@ This repository hosts the Rehabit mobile, API, and machine learning applications
 3. Use the provided scripts to work with each package:
    ```bash
    npm run build:mobile
+   npm run test:integration
    npm run test:api
    npm run test:ml
+   npm run test:mobile
    npm run lint
    npm run format
    ```
@@ -25,6 +27,7 @@ apps/
   mobile/  # React Native placeholder project
   api/     # Minimal Node.js API service
   ml/      # Machine learning utilities
+docs/      # QA 체크리스트, 테스트 데이터 시드 등 가이드 문서
 .github/workflows/  # CI pipelines for each project
 ```
 
