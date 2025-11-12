@@ -1,10 +1,8 @@
 {
-  "name": "rehabit-monorepo",
+  "name": "rehabit-demo-1.0",
   "version": "1.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*"
-  ],
+  "description": "Rehabit demo NestJS backend",
+  "license": "MIT",
   "scripts": {
     "lint": "eslint \"apps/**/*.{js,jsx}\"",
     "format": "prettier --write \"**/*.{js,jsx,json,md,yml,yaml}\"",
@@ -16,8 +14,24 @@
     "test:mobile": "npm test --workspace @rehabit/mobile"
   },
   "devDependencies": {
+    "@nestjs/testing": "^10.0.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.0",
+    "@types/jsonwebtoken": "^9.0.0",
+    "@types/node": "^20.0.0",
+    "@types/passport-jwt": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "prettier": "^3.2.5"
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.6.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.0"
   }
 }
